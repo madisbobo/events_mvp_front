@@ -12,12 +12,10 @@ const EventAddPage = () => {
         boxShadow={"md"}
         borderRadius={"xl"}
       >
-        <SimpleGrid columns={2} spacingY={10} spacingX={10} my={50}>
-          <Heading size={"md"} gridColumn={"span 2"}>
-            Lisa sündmus:
-          </Heading>
-          <EventAddForm />
-        </SimpleGrid>
+        <Heading size={"lg"} gridColumn={"span 2"} my={10}>
+          Lisa sündmus
+        </Heading>
+        <EventAddForm />
       </Box>
     </>
   );
