@@ -1,22 +1,40 @@
 import {
   Card,
   CardBody,
+  Flex,
   HStack,
   Heading,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import Event from "../entities/Event";
+import EventPreview from "../entities/EventPreview";
+import imagePlaceholder from "../assets/imagePlaceholder.png";
+import { FaLocationDot, FaRegCalendarDays } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
-  event: Event;
+  event: EventPreview;
 }
 
 const EventCard = ({ event }: Props) => {
+  const navigate = useNavigate();
+
   return (
-    <Card borderRadius={10} overflow="hidden">
-      <Image objectFit="cover" src="#" alt="Chakra UI" />
+    <Card
+      borderRadius={10}
+      overflow="hidden"
+      maxW="400px"
+      p="15px"
+      _hover={{ cursor: "pointer" }}
+      onClick={() => navigate(`/events/${event.id}`)}
+    >
+      <Image
+        objectFit="contain"
+        h="270px"
+        src={imagePlaceholder}
+        alt="posterImage"
+      />
       <CardBody
         display="flex"
         flexDirection="column"
@@ -24,11 +42,17 @@ const EventCard = ({ event }: Props) => {
       >
         <Stack spacing="3">
           <HStack justifyContent="space-between" mb={1}></HStack>
-          <Heading size="md" mb={1}>
+          <Heading size="md" mb={1} height="55px">
             {event.name}
           </Heading>
-          <Text color="gray.500">{event.locationName}</Text>
-          <Text color="gray.500">{event.startDateTime}</Text>
+          <Flex align="center">
+            <FaRegCalendarDays />
+            <Text ml={2}>{event.locationName}</Text>
+          </Flex>
+          <Flex align="center">
+            <FaLocationDot />
+            <Text ml={2}>{event.startDateTime}</Text>
+          </Flex>
         </Stack>
       </CardBody>
     </Card>

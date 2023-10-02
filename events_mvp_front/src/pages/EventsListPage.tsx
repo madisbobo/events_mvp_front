@@ -9,11 +9,11 @@ const EventsListPage = () => {
 
   return (
     <>
-      <Heading>Kõik sündmused:</Heading>
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+      <Heading mb={7}>Kõik sündmused:</Heading>
+      <SimpleGrid columns={{ sm: 1, md: 3, lg: 4, xl: 4 }} spacing={6}>
         {isLoading && <Text>Loading...</Text>}
         {events?.map((event) => (
-          <EventCard event={event} key={event.id}/>
+          <EventCard event={event} key={event.id} />
         ))}
       </SimpleGrid>
     </>

@@ -10,13 +10,13 @@ const Layout = () => {
                   "nav"
                   "main"`}
         gridTemplateRows={"50px 1fr"}
-        h="1000px"
+        minH="1000px"
         gap="1"
       >
         <GridItem area={"nav"}>
           <NavBar />
         </GridItem>
-        <GridItem p="20px" area={"main"} bg={"gray.100"}>
+        <GridItem p="30px" px="200px" area={"main"} bg={"gray.100"}>
           <Outlet />
         </GridItem>
       </Grid>
