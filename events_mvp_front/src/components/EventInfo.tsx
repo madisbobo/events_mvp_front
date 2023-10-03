@@ -2,6 +2,7 @@ import { HStack, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import imagePlaceholder from "../assets/imagePlaceholder.png";
 import useEvent from "../hooks/useEvent";
 import { useParams } from "react-router-dom";
+import { formatDate, formatTime } from "../services/dateTimeFormatter";
 
 const EventInfo = () => {
   const params = useParams();
@@ -25,11 +26,11 @@ const EventInfo = () => {
         <Stack spacing="3">
           <HStack>
             <Text fontWeight={"bold"}>Kuupäev:</Text>
-            <Text>{data.startDateTime}</Text>
+            <Text>{formatDate(data.startDateTime)}</Text>
           </HStack>
           <HStack>
             <Text fontWeight={"bold"}>Kellaaeg:</Text>
-            <Text>{data.startDateTime}</Text>
+            <Text>{formatTime(data.startDateTime)}</Text>
           </HStack>
         </Stack>
         <Stack spacing="3">
@@ -46,12 +47,7 @@ const EventInfo = () => {
 
       <Stack gridColumn={"span 2"}>
         <Heading size={"md"}>Kirjeldus</Heading>
-        <Text>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, ut
-          reprehenderit eos nulla nesciunt aperiam non sit provident, cumque
-          animi doloremque? Natus perspiciatis eius a voluptate numquam ullam
-          iure optio.
-        </Text>
+        <Text>{data.description}</Text>
       </Stack>
     </>
   );

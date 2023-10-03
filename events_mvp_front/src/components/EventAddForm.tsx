@@ -6,24 +6,35 @@ import {
   SimpleGrid,
   Stack,
   Textarea,
+  Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useAddEvent from "../hooks/useAddEvent";
 
 const EventAddForm = () => {
   const navigate = useNavigate();
   const { handleSubmit, register } = useForm();
+  const addEvent = useAddEvent();
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    const combinedDateTime = new Date(`${data.startDate}T${data.startTime}`);
+    data.startDateTime = combinedDateTime.toISOString();
+    delete data.startDate;
+    delete data.startTime;
+
+    addEvent.mutate(data, { onSuccess: () => navigate("/") });
   };
+
+  if (addEvent.error) return <Text>{addEvent.error.message}</Text>;
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl>
         <SimpleGrid columns={2} spacingY={10} spacingX={10} my={10}>
           <Stack>
             <FormLabel>Ürituse nimi *</FormLabel>
-            <Input isRequired={true} {...register("firstName")} />
+            <Input isRequired={true} {...register("name")} />
           </Stack>
           <Stack>
             <FormLabel>Maksimaalne osalejate arv *</FormLabel>
@@ -50,8 +61,12 @@ const EventAddForm = () => {
             <Textarea {...register("description")} />
           </Stack>
           <Stack w={"40%"} gridColumn={1} my={5}>
-            <Button type="submit" colorScheme="teal">
-              Registreeri
+            <Button
+              type="submit"
+              colorScheme="teal"
+              isDisabled={addEvent.isLoading}
+            >
+              {addEvent.isLoading ? "Salvestan..." : "Salvesta"}
             </Button>
           </Stack>
         </SimpleGrid>
