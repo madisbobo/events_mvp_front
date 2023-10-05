@@ -1,11 +1,17 @@
-import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import EventInfo from "../components/EventInfo";
 import EventRegistrationForm from "../components/EventRegistrationForm";
 import { useParams } from "react-router-dom";
+import useEvent from "../hooks/useEvent";
 
 const EventViewPage = () => {
   const params = useParams();
   const eventId = parseFloat(params.id ?? "0");
+  const { data: eventData, error, isLoading } = useEvent(eventId);
+  
+
+  if (error) return <Text>{error.message}</Text>;
+  if (isLoading) return <Text>Loading...</Text>;
 
   return (
     <>
@@ -18,7 +24,7 @@ const EventViewPage = () => {
         borderRadius={"xl"}
       >
         <SimpleGrid columns={2} spacingY={10} spacingX={10} my={10}>
-          <EventInfo eventId = {eventId}/>
+          <EventInfo eventData={eventData} />
         </SimpleGrid>
       </Box>
       <Box
@@ -32,7 +38,7 @@ const EventViewPage = () => {
         <Heading size={"lg"} gridColumn={"span 2"} my={10}>
           Registreeri
         </Heading>
-        <EventRegistrationForm eventId={eventId} />
+        <EventRegistrationForm eventId={eventData.id} capacity={eventData.capacity}/>
       </Box>
     </>
   );

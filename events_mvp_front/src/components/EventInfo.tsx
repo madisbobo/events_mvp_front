@@ -1,17 +1,13 @@
 import { HStack, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import imagePlaceholder from "../assets/imagePlaceholder.png";
-import useEvent from "../hooks/useEvent";
+import Event from "../entities/Event";
 import { formatDate, formatTime } from "../services/dateTimeFormatter";
 
 interface Props {
-  eventId: number;
+  eventData: Event;
 }
 
-const EventInfo = ({ eventId }: Props) => {
-  const { data, error, isLoading } = useEvent(eventId);
-
-  if (error) return <Text>{error.message}</Text>;
-  if (isLoading) return <Text>Loading...</Text>;
+const EventInfo = ({ eventData }: Props) => {
 
   return (
     <>
@@ -24,32 +20,32 @@ const EventInfo = ({ eventId }: Props) => {
         />
       </Stack>
       <Stack spacing="9">
-        <Heading>{data?.name}</Heading>
+        <Heading>{eventData.name}</Heading>
         <Stack spacing="3">
           <HStack>
             <Text fontWeight={"bold"}>Kuupäev:</Text>
-            <Text>{formatDate(data.startDateTime)}</Text>
+            <Text>{formatDate(eventData.startDateTime)}</Text>
           </HStack>
           <HStack>
             <Text fontWeight={"bold"}>Kellaaeg:</Text>
-            <Text>{formatTime(data.startDateTime)}</Text>
+            <Text>{formatTime(eventData.startDateTime)}</Text>
           </HStack>
         </Stack>
         <Stack spacing="3">
           <HStack>
             <Text fontWeight={"bold"}>Toimumiskoht:</Text>
-            <Text>{data.locationName}</Text>
+            <Text>{eventData.locationName}</Text>
           </HStack>
           <HStack>
             <Text fontWeight={"bold"}>Aadress:</Text>
-            <Text>{data.locationAddress}</Text>
+            <Text>{eventData.locationAddress}</Text>
           </HStack>
         </Stack>
       </Stack>
 
       <Stack gridColumn={"span 2"}>
         <Heading size={"md"}>Kirjeldus</Heading>
-        <Text>{data.description}</Text>
+        <Text>{eventData.description}</Text>
       </Stack>
     </>
   );

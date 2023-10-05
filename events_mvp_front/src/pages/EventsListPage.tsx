@@ -10,8 +10,9 @@ const EventsListPage = () => {
   return (
     <>
       <Heading mb={7}>Kõik sündmused:</Heading>
+      {isLoading && <Text>Loading...</Text>}
+      {events?.length === 0 && <Text>Hetkel pole ühtegi sündmust tulemas.</Text>}
       <SimpleGrid columns={{ sm: 1, md: 3, lg: 4, xl: 4 }} spacing={6}>
-        {isLoading && <Text>Loading...</Text>}
         {events?.map((event) => (
           <EventCard event={event} key={event.id} />
         ))}

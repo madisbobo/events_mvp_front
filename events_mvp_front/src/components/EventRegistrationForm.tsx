@@ -5,24 +5,52 @@ import {
   Input,
   SimpleGrid,
   Stack,
+  useToast,
+  Text,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAddRegistration from "../hooks/useAddRegistration";
+import useRegistrationsCount from "../hooks/useRegistrationsCount";
 
 interface Props {
   eventId: number;
+  capacity: number;
 }
 
-const EventRegistrationForm = ({ eventId }: Props) => {
-  const navigate = useNavigate();
-  const { handleSubmit, register } = useForm();
+const EventRegistrationForm = ({ eventId, capacity }: Props) => {
+  const { handleSubmit, register, reset } = useForm();
   const addRegistration = useAddRegistration(eventId);
+  const { data: totalRegistrations } = useRegistrationsCount(eventId);
+  const toast = useToast();
+
+  const registrationCount = totalRegistrations?.registrationCount || 0;
 
   const onSubmit = (data: any) => {
-    console.log(data);
-    addRegistration.mutate(data, { onSuccess: () => navigate("/") });
+    addRegistration.mutate(data, {
+      onSuccess: () => {
+        toast({
+          title: "Registreerimine õnnestus.",
+          description: "Oled edukalt sündmusele registreeritud.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        reset();
+      },
+      onError: (err) => {
+        toast({
+          title: "Registreerimine ebaõnnestus.",
+          description: err.response.data.message, // Kuva siia backist tulev teade
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      },
+    });
   };
+
+  if (capacity <= registrationCount)
+    return <Text my={10}>Antud sündmusele vabu kohti ei ole.</Text>;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -39,8 +67,9 @@ const EventRegistrationForm = ({ eventId }: Props) => {
           <Stack w={"80%"}>
             <FormLabel>Isikukood *</FormLabel>
             <Input
-              type="number"
               isRequired={true}
+              pattern="[0-9]{11}"
+              title="Sisesta isikukood (11 numbrit)"
               {...register("personalId")}
             />
           </Stack>
