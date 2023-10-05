@@ -1,8 +1,12 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import EventInfo from "../components/EventInfo";
 import EventRegistrationForm from "../components/EventRegistrationForm";
+import { useParams } from "react-router-dom";
 
 const EventViewPage = () => {
+  const params = useParams();
+  const eventId = parseFloat(params.id ?? "0");
+
   return (
     <>
       <Box
@@ -14,7 +18,7 @@ const EventViewPage = () => {
         borderRadius={"xl"}
       >
         <SimpleGrid columns={2} spacingY={10} spacingX={10} my={10}>
-          <EventInfo />
+          <EventInfo eventId = {eventId}/>
         </SimpleGrid>
       </Box>
       <Box
@@ -28,7 +32,7 @@ const EventViewPage = () => {
         <Heading size={"lg"} gridColumn={"span 2"} my={10}>
           Registreeri
         </Heading>
-        <EventRegistrationForm />
+        <EventRegistrationForm eventId={eventId} />
       </Box>
     </>
   );

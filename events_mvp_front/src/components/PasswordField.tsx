@@ -26,7 +26,7 @@ import {
   
     return (
       <FormControl>
-        <FormLabel htmlFor="password">Password</FormLabel>
+        <FormLabel>Password</FormLabel>
         <InputGroup>
           <InputRightElement>
             <IconButton
@@ -41,7 +41,6 @@ import {
             ref={mergeRef}
             name="password"
             type={isOpen ? 'text' : 'password'}
-            autoComplete="current-password"
             required
             {...props}
           />

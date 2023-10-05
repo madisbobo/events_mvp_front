@@ -1,7 +1,13 @@
 import { Box, Heading } from "@chakra-ui/react";
 import EventAddForm from "../components/EventAddForm";
+import { useAuth } from "../context/AuthContext";
 
 const EventAddPage = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated)
+    return <Heading size="lg" textAlign={"center"}>Ligipääs puudub</Heading>;
+
   return (
     <>
       <Box

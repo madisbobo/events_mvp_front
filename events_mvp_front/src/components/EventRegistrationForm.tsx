@@ -8,13 +8,20 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import useAddRegistration from "../hooks/useAddRegistration";
 
-const EventRegistrationForm = () => {
+interface Props {
+  eventId: number;
+}
+
+const EventRegistrationForm = ({ eventId }: Props) => {
   const navigate = useNavigate();
   const { handleSubmit, register } = useForm();
+  const addRegistration = useAddRegistration(eventId);
 
   const onSubmit = (data: any) => {
     console.log(data);
+    addRegistration.mutate(data, { onSuccess: () => navigate("/") });
   };
 
   return (
@@ -38,8 +45,12 @@ const EventRegistrationForm = () => {
             />
           </Stack>
           <Stack w={"40%"} gridColumn={1} my={5}>
-            <Button type="submit" colorScheme="teal">
-              Registreeri
+            <Button
+              type="submit"
+              colorScheme="teal"
+              isDisabled={addRegistration.isLoading}
+            >
+              {addRegistration.isLoading ? "Registreerin..." : "Registreeri"}
             </Button>
           </Stack>
         </SimpleGrid>

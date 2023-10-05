@@ -1,12 +1,14 @@
 import { HStack, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import imagePlaceholder from "../assets/imagePlaceholder.png";
 import useEvent from "../hooks/useEvent";
-import { useParams } from "react-router-dom";
 import { formatDate, formatTime } from "../services/dateTimeFormatter";
 
-const EventInfo = () => {
-  const params = useParams();
-  const { data, error, isLoading } = useEvent(parseFloat(params.id ?? "0"));
+interface Props {
+  eventId: number;
+}
+
+const EventInfo = ({ eventId }: Props) => {
+  const { data, error, isLoading } = useEvent(eventId);
 
   if (error) return <Text>{error.message}</Text>;
   if (isLoading) return <Text>Loading...</Text>;
