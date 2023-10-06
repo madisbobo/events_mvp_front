@@ -7,6 +7,7 @@ Welcome to the Events MVP Frontend! This section will guide you through the proc
 Before you begin, ensure you have met the following requirements:
 
 - **Node.js:** This project requires Node.js. You can download and install it from [nodejs.org](https://nodejs.org/).
+- **Git:** Git is used for cloning the project repository and for version control. You can install Git from [git-scm.com](https://git-scm.com/).
 
 ### Installation
 
@@ -15,11 +16,11 @@ Follow these steps to get the project up and running:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/madisbobo/events_mvp_front/tree/main/events_mvp_front
+   git clone https://github.com/madisbobo/events_mvp_front.git
 
 2. **Navigate to the Project Directory:**
    ```bash
-   cd events-mvp-frontend
+   cd events_mvp_front/events_mvp_front
 
 3. **Install Dependencies:**
    ```bash
