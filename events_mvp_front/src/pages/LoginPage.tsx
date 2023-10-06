@@ -4,8 +4,10 @@ import {
   Container,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { PasswordField } from "../components/PasswordField";
 import { useForm } from "react-hook-form";
@@ -13,11 +15,10 @@ import useLogin from "../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-// Tee loginform eraldi komponendiks (Hetkel ainult password)
-
 const LoginPage = () => {
   const { loginAuth } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast();
   const { handleSubmit, register } = useForm();
   const login = useLogin();
 
@@ -26,6 +27,14 @@ const LoginPage = () => {
       onSuccess: (res) => {
         loginAuth(res.token);
         navigate("/");
+      },
+      onError: () => {
+        toast({
+          title: "Sisselogimine ebaõnnestus.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       },
     });
   };
@@ -44,15 +53,24 @@ const LoginPage = () => {
           >
             <Stack spacing="6">
               <Stack spacing="5">
+                <Heading size={"md"} textAlign={"center"}>
+                  Admin Sissepääs
+                </Heading>
                 <FormControl>
                   <FormLabel>Email</FormLabel>
-                  <Input id="email" type="email" {...register("email")} />
+                  <Input
+                    id="email"
+                    type="email"
+                    required={true}
+                    placeholder="Email"
+                    {...register("email")}
+                  />
                 </FormControl>
                 <PasswordField {...register("password")} />
               </Stack>
               <Stack spacing="6">
                 <Button type="submit" colorScheme="teal">
-                  Sign in
+                  Logi sisse
                 </Button>
               </Stack>
             </Stack>

@@ -26,7 +26,7 @@ import {
   
     return (
       <FormControl>
-        <FormLabel>Password</FormLabel>
+        <FormLabel>Parool</FormLabel>
         <InputGroup>
           <InputRightElement>
             <IconButton
@@ -40,6 +40,7 @@ import {
             id="password"
             ref={mergeRef}
             name="password"
+            placeholder='Parool'
             type={isOpen ? 'text' : 'password'}
             required
             {...props}

@@ -1,12 +1,15 @@
 import { useQueryClient } from "@tanstack/react-query";
 import React, { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   isAuthenticated: boolean;
   loginAuth: (token: string) => void;
   logoutAuth: () => void;
 }
+
+interface AuthProviderProps {
+    children: React.ReactNode;
+  }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -18,7 +21,7 @@ export const useAuth = () => {
   return context;
 };
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("jwtToken")
   );

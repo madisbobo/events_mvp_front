@@ -8,7 +8,7 @@ const useAddEvent = () => {
   const addEvent = (event: Event) =>
     apiClient.post<Event>("/events/add", event).then((res) => res.data);
 
-  return useMutation<Event, Error, Event>({
+  return useMutation<any, Error, Event>({
     mutationFn: addEvent,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["events"] });

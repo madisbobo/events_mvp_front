@@ -8,7 +8,6 @@ interface ErrorResponse {
 
 const ErrorPage = () => {
   const error = useRouteError() as ErrorResponse | undefined;
-  if (error) console.log(error);
 
   return (
     <>

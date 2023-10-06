@@ -25,7 +25,7 @@ const EventCard = ({ event }: Props) => {
     <Card
       borderRadius={10}
       overflow="hidden"
-      maxW="400px"
+      maxW="350px"
       p="15px"
       _hover={{ cursor: "pointer" }}
       onClick={() => navigate(`/events/${event.id}`)}

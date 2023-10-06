@@ -1,7 +1,6 @@
 import { Box, Link, Stack } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import NavItem from "../../entities/NavItems";
-import { useAuth } from "../../context/AuthContext";
 
 interface Props {
   isAuthenticated: boolean;
