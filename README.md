@@ -31,7 +31,7 @@ Follow these steps to get the project up and running:
 
 5. **Open the Application in Your Browser:**
 
-Open your web browser and go to http://localhost:5173/ (could be different) to access the application.
+   Open your web browser and go to http://localhost:5173/ (could be different) to access the application.
 
 
 That's it! You now have the Events MVP Frontend up and running on your local machine.
