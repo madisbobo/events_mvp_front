@@ -32,7 +32,7 @@ const NavBar = () => {
               _activeLink={{ color: "teal.500" }}
               _hover={{ color: "teal.600" }}
             >
-              Logi Sisse
+              Logi sisse
             </Link>
           ) : (
             <Link
@@ -42,7 +42,7 @@ const NavBar = () => {
               _activeLink={{ color: "teal.500" }}
               _hover={{ color: "teal.600" }}
             >
-              Logi Välja
+              Logi välja
             </Link>
           )}
         </Stack>

@@ -11,7 +11,7 @@ const NavDesktop = ({ isAuthenticated }: Props) => {
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map(
         (navItem) =>
-          (isAuthenticated || navItem.label !== "Lisa Sündmus") && (
+          (isAuthenticated || navItem.label !== "Lisa sündmus") && (
             <Box key={navItem.label}>
               <Link
                 as={NavLink}
@@ -37,7 +37,7 @@ const NAV_ITEMS: NavItem[] = [
     to: "/",
   },
   {
-    label: "Lisa Sündmus",
+    label: "Lisa sündmus",
     to: "/lisa",
   },
 ];
