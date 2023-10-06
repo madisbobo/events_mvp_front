@@ -54,7 +54,7 @@ const LoginPage = () => {
             <Stack spacing="6">
               <Stack spacing="5">
                 <Heading size={"md"} textAlign={"center"}>
-                  Admin Sissepääs
+                  Admin sissepääs
                 </Heading>
                 <FormControl>
                   <FormLabel>Email</FormLabel>
@@ -62,7 +62,6 @@ const LoginPage = () => {
                     id="email"
                     type="email"
                     required={true}
-                    placeholder="Email"
                     {...register("email")}
                   />
                 </FormControl>
