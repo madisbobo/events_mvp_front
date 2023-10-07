@@ -7,6 +7,7 @@ import {
   Stack,
   Textarea,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,7 @@ const EventAddForm = () => {
   const navigate = useNavigate();
   const { handleSubmit, register } = useForm();
   const addEvent = useAddEvent();
+  const toast = useToast();
 
   const onSubmit = (data: any) => {
     const combinedDateTime = new Date(`${data.startDate}T${data.startTime}`);
@@ -23,10 +25,27 @@ const EventAddForm = () => {
     delete data.startDate;
     delete data.startTime;
 
-    addEvent.mutate(data, { onSuccess: () => navigate("/") });
+    addEvent.mutate(data, {
+      onSuccess: () => {
+        toast({
+          title: "Ürituse lisamine õnnestus.",
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+        });
+        navigate("/");
+      },
+      onError: (err) => {
+        toast({
+          title: "Ürituse lisamine ebaõnnestus.",
+          description: err.response.data.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      },
+    });
   };
-
-  if (addEvent.error) return <Text>{addEvent.error.message}</Text>;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
