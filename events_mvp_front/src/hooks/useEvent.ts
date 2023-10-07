@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import Event from "../entities/Event";
 import apiClient from "../services/apiClient";
+import { Event } from "../entities/Event";
 
 const useEvent = (id: number) => {
   return useQuery<Event, Error>({

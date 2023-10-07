@@ -1,4 +1,4 @@
-export default interface RegistrationError {
+export interface RegistrationError {
     response: {
         data: {
             message: string;

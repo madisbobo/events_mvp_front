@@ -1,7 +1,7 @@
 import { HStack, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import imagePlaceholder from "../assets/imagePlaceholder.png";
-import Event from "../entities/Event";
 import { formatDate, formatTime } from "../services/dateTimeFormatter";
+import { Event } from "../entities/Event";
 
 interface Props {
   eventData: Event;

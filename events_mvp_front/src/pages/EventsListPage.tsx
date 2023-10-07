@@ -9,7 +9,7 @@ const EventsListPage = () => {
 
   return (
     <>
-      <Heading mb={7}>Kõik sündmused:</Heading>
+      <Heading mb={7}>Kõik sündmused</Heading>
       {isLoading && <Text>Loading...</Text>}
       {events?.length === 0 && (
         <Text>Hetkel pole ühtegi sündmust tulemas.</Text>

@@ -1,14 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
 import apiClient from "../services/apiClient";
-import LoginResponse from "../entities/LoginResponse";
-import Login from "../entities/Login";
+import { LoginCredentials, LoginResponse } from "../entities/Login";
 
 const useLogin = () => {
 
-  const login = (loginDetails: Login) =>
+  const login = (loginDetails: LoginCredentials) =>
     apiClient.post<LoginResponse>("/user/login", loginDetails).then((res) => res.data);
 
-  return useMutation<LoginResponse, Error, Login>({
+  return useMutation<LoginResponse, Error, LoginCredentials>({
     mutationFn: login,
   });
 };

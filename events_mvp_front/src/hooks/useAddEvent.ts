@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import apiClient from "../services/apiClient";
-import Event from "../entities/Event";
+import { Event } from "../entities/Event";
 
 const useAddEvent = () => {
   const queryClient = useQueryClient();

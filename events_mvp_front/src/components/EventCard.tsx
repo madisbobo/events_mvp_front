@@ -8,11 +8,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import EventPreview from "../entities/EventPreview";
 import imagePlaceholder from "../assets/imagePlaceholder.png";
 import { FaLocationDot, FaRegCalendarDays } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../services/dateTimeFormatter";
+import { EventPreview } from "../entities/Event";
 
 interface Props {
   event: EventPreview;

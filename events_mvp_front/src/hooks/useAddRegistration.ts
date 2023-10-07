@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import apiClient from "../services/apiClient";
-import Participant from "../entities/Participant";
-import RegistrationError from "../entities/RegistrationError";
+import { Participant } from "../entities/Registration";
+import { RegistrationError } from "../entities/ErrorCustom";
 
 const useAddRegistration = (eventId: number) => {
     const queryClient = useQueryClient();

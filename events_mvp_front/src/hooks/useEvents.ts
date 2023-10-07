@@ -1,7 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../services/apiClient";
-import EventPreview from "../entities/EventPreview";
+import { EventPreview } from "../entities/Event";
 
 const useEvents = () => {
   return useQuery<EventPreview[], Error>({
